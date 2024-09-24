@@ -20,6 +20,7 @@ class ThunkArg<T> {}
 
 export const getUser = createAsyncThunk('users/info', async () => {
   const response = axiosInstance.get('/users/current');
+  console.log('reeeeeeesss-----', response);
   return response;
 });
 

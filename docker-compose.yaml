@@ -13,5 +13,17 @@ services:
     container_name: front
     command: yarn start
     environment:
-      REACT_APP_BACK_URL: https://api3.twilightcyber.com
+      REACT_APP_BACK_URL: http://localhost:5050/api
       REACT_APP_BACK_TOKEN: fb1fffffa1e09a0888bbe10987edfc
+  proxy-backend:
+    build: 
+      context: ./cors-proxy
+      dockerfile: ./cors-proxy/Dockerfile
+    ports:
+      - '5050:5050'
+    volumes:
+      - ./cors-proxy:/app
+    container_name: back
+    environment:
+      BACKEND_URL: 'https://api3.twilightcyber.com'
+    restart: unless-stopped
