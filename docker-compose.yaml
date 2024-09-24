@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  infections-search-front:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - './src:/app/src'
+      - './data:/app/data'
+    container_name: front
+    command: yarn start
+    environment:
+      REACT_APP_BACK_URL: https://api3.twilightcyber.com
+      REACT_APP_BACK_TOKEN: fb1fffffa1e09a0888bbe10987edfc
